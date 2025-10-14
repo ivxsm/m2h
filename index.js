@@ -23,6 +23,7 @@ Examples:
   m2h ./docs/guide.md ./public/guide.html
 
 Options:
+  --html-only  Output only HTML content without CSS wrapper
   -h, --help   Show this help message
   -v, --version Show version information
 `);
@@ -53,16 +54,20 @@ async function main() {
     return;
   }
   
+  // Check for --html-only flag
+  const htmlOnly = args.includes('--html-only');
+  const filteredArgs = args.filter(arg => arg !== '--html-only');
+  
   // Check for required arguments
-  if (args.length < 1) {
+  if (filteredArgs.length < 1) {
     console.error('Error: Missing required arguments');
     console.error('Usage: m2h <input.md> [output.html]');
     console.error('Use -h or --help for more information');
     process.exit(1);
   }
   
-  const inputPath = args[0];
-  let outputPath = args[1];
+  const inputPath = filteredArgs[0];
+  let outputPath = filteredArgs[1];
   
   // If no output path provided, generate it from input path
   if (!outputPath) {
@@ -94,7 +99,7 @@ async function main() {
   
   try {
     console.log(`Converting ${inputPath} to ${outputPath}...`);
-    await convertFile(inputPath, outputPath);
+    await convertFile(inputPath, outputPath, htmlOnly);
     console.log('Conversion completed successfully!');
   } catch (error) {
     console.error(`Error: ${error.message}`);

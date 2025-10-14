@@ -27,17 +27,22 @@ function convertMarkdownToHtml(markdownText) {
  * Convert Markdown file to HTML file
  * @param {string} inputPath - Path to input Markdown file
  * @param {string} outputPath - Path to output HTML file
+ * @param {boolean} htmlOnly - If true, output only HTML without CSS wrapper
  * @returns {Promise<void>}
  */
-async function convertFile(inputPath, outputPath) {
+async function convertFile(inputPath, outputPath, htmlOnly = false) {
   const fs = require('fs').promises;
   
   try {
     const markdownContent = await fs.readFile(inputPath, 'utf8');
     const htmlContent = convertMarkdownToHtml(markdownContent);
     
-    // Wrap in basic HTML structure
-    const fullHtml = `<!DOCTYPE html>
+    let finalHtml;
+    if (htmlOnly) {
+      finalHtml = htmlContent;
+    } else {
+      // Wrap in basic HTML structure
+      finalHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,8 +62,9 @@ async function convertFile(inputPath, outputPath) {
 ${htmlContent}
 </body>
 </html>`;
+    }
     
-    await fs.writeFile(outputPath, fullHtml, 'utf8');
+    await fs.writeFile(outputPath, finalHtml, 'utf8');
   } catch (error) {
     throw new Error(`File conversion failed: ${error.message}`);
   }
