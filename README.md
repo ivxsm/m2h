@@ -1,4 +1,4 @@
-# MD to HTML Converter
+# Markdown to HTML Converter
 
 A fast command-line tool that converts Markdown files to HTML using GitHub Flavored Markdown support.
 
