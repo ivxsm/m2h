@@ -11,33 +11,45 @@ npm install
 ## Usage
 
 ```bash
-md2html input.md output.html
+m2h input.md [output.html]
 ```
 
 ### Examples
 
-Convert a README file:
+Convert a README file (auto-generates README.html):
 ```bash
-md2html README.md README.html
+m2h README.md
+```
+
+Convert with custom output filename:
+```bash
+m2h README.md custom.html
 ```
 
 Convert with custom output path:
 ```bash
-md2html ./docs/guide.md ./public/guide.html
+m2h ./docs/guide.md ./public/guide.html
+```
+
+Output only HTML content without CSS wrapper:
+```bash
+m2h README.md --html-only
 ```
 
 ## Features
 
 - GitHub Flavored Markdown support (tables, task lists, strikethrough)
 - Clean HTML output with built-in CSS styling
+- Optional output filename (auto-generates from input if not provided)
+- Raw HTML output option (--html-only flag)
 - Automatic directory creation
 - Error handling for missing files
 - Help and version information
 
 ## Commands
 
-- `md2html -h` or `md2html --help` - Show help
-- `md2html -v` or `md2html --version` - Show version
+- `m2h -h` or `m2h --help` - Show help
+- `m2h -v` or `m2h --version` - Show version
 
 ## Requirements
 
