@@ -1,0 +1,21 @@
+{
+  "name": "md-to-html-converter",
+  "version": "1.0.0",
+  "description": "Fast Markdown to HTML converter CLI tool",
+  "main": "index.js",
+  "bin": {
+    "md2html": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": ["markdown", "html", "converter", "cli"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "marked": "^9.1.6"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
