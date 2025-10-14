@@ -19,7 +19,7 @@ Arguments:
 
 Examples:
   m2h README.md                    # Creates README.html
-  m2h README.md README.html         # Creates README.html
+  m2h README.md customName.html         # Creates customName.html
   m2h ./docs/guide.md ./public/guide.html
 
 Options:

@@ -9,7 +9,12 @@
   "scripts": {
     "start": "node index.js"
   },
-  "keywords": ["markdown", "html", "converter", "cli"],
+  "keywords": [
+    "markdown",
+    "html",
+    "converter",
+    "cli"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
