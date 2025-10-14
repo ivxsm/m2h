@@ -4,7 +4,7 @@
   "description": "Fast Markdown to HTML converter CLI tool",
   "main": "index.js",
   "bin": {
-    "md2html": "./index.js"
+    "m2h": "./index.js"
   },
   "scripts": {
     "start": "node index.js"

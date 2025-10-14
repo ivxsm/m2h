@@ -11,15 +11,16 @@ function showHelp() {
   console.log(`
 Markdown to HTML Converter
 
-Usage: md2html <input.md> <output.html>
+Usage: m2h <input.md> [output.html]
 
 Arguments:
   input.md     Path to the input Markdown file
-  output.html  Path to the output HTML file
+  output.html  Path to the output HTML file (optional)
 
 Examples:
-  md2html README.md README.html
-  md2html ./docs/guide.md ./public/guide.html
+  m2h README.md                    # Creates README.html
+  m2h README.md README.html         # Creates README.html
+  m2h ./docs/guide.md ./public/guide.html
 
 Options:
   -h, --help   Show this help message
@@ -53,14 +54,20 @@ async function main() {
   }
   
   // Check for required arguments
-  if (args.length < 2) {
+  if (args.length < 1) {
     console.error('Error: Missing required arguments');
-    console.error('Usage: md2html <input.md> <output.html>');
+    console.error('Usage: m2h <input.md> [output.html]');
     console.error('Use -h or --help for more information');
     process.exit(1);
   }
   
-  const [inputPath, outputPath] = args;
+  const inputPath = args[0];
+  let outputPath = args[1];
+  
+  // If no output path provided, generate it from input path
+  if (!outputPath) {
+    outputPath = inputPath.replace(/\.md$/i, '.html');
+  }
   
   // Validate input file exists
   if (!fs.existsSync(inputPath)) {
